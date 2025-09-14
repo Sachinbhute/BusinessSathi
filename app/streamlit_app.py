@@ -29,10 +29,10 @@ from app.utils.data_utils import (
 )
 
 # Load environment variables (robust): always try project root .env
-# _env_path = find_dotenv(usecwd=True)
-# if not _env_path:
-#     _env_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".env")
-# load_dotenv(_env_path)
+_env_path = find_dotenv(usecwd=True)
+if not _env_path:
+    _env_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".env")
+load_dotenv(_env_path)
 
 # Page config
 st.set_page_config(

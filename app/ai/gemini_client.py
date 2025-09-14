@@ -11,7 +11,6 @@ except Exception:  # pragma: no cover - optional dependency at runtime
 
 
 DEFAULT_MODEL = os.getenv("GEMINI_MODEL", "gemini-1.5-flash")
-DEFAULT_MODEL = st.secrets["api_keys"]["GEMINI_API_KEY"]
 
 
 class GeminiClient:
