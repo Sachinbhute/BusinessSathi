@@ -16,7 +16,7 @@ from dotenv import load_dotenv, find_dotenv
 # Add the parent directory to the path for imports
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from app.ai.openai_client import OpenAIClient
+from app.ai.client_factory import AIClient, AIProvider
 from app.ai.prompts import build_insights_prompt
 from app.utils.data_utils import (
     build_json_for_ai,
@@ -78,8 +78,8 @@ def initialize_session_state():
     if 'insights' not in st.session_state:
         st.session_state.insights = {}
     if 'ai_client' not in st.session_state:
-        # Auto-configure: if OPENAI_API_KEY exists, real AI is used; otherwise mock
-        st.session_state.ai_client = OpenAIClient()
+        # Use Gemini as the default provider
+        st.session_state.ai_client = AIClient(provider=AIProvider.GEMINI)
 
 def load_sample_data(scenario: str) -> pd.DataFrame:
     """Load predefined sample data scenarios."""
@@ -107,9 +107,14 @@ def process_transactions(df: pd.DataFrame) -> Tuple[Dict, Dict]:
     kpis = compute_kpis(df)
     
     # Generate AI insights
-    data_json = build_json_for_ai(df, kpis)
-    prompt = build_insights_prompt(data_json)
-    insights = st.session_state.ai_client.generate_business_insights(prompt)
+    try:
+        data_json = build_json_for_ai(df, kpis)
+        prompt = build_insights_prompt(data_json)
+        insights = st.session_state.ai_client.generate_business_insights(prompt)
+    except Exception as e:
+        st.error(f"❌ **AI Error:** {str(e)}")
+        st.info("Please check your API key and internet connection, then try again.")
+        insights = {}
     
     return kpis, insights
 
@@ -117,10 +122,11 @@ def render_sidebar():
     """Render the sidebar with data input options."""
     st.sidebar.header("📥 Data Input")
     
+    
     # Data source selection
     data_source = st.sidebar.radio(
         "Choose data source:",
-        ["Upload CSV", "Manual Entry", "Sample Data", "Voice Input"]
+        ["Upload CSV", "Manual Entry", "Sample Data"]
     )
     
     if data_source == "Upload CSV":
@@ -186,31 +192,6 @@ def render_sidebar():
                 st.sidebar.success(f"✅ Loaded {len(df)} transactions from {scenario}")
             else:
                 st.sidebar.error("❌ Sample data not found. Run scripts/generate_sample_data.py first.")
-    
-    elif data_source == "Voice Input":
-        st.sidebar.subheader("🎤 Voice Input")
-        st.sidebar.info("Upload an audio file to transcribe business insights")
-        
-        audio_file = st.sidebar.file_uploader(
-            "Upload audio file",
-            type=['wav', 'mp3', 'm4a', 'ogg'],
-            help="Supported formats: WAV, MP3, M4A, OGG"
-        )
-        
-        if audio_file is not None:
-            if st.sidebar.button("Transcribe Audio"):
-                with st.spinner("Transcribing audio..."):
-                    transcript, used_real_api = st.session_state.ai_client.transcribe_audio(
-                        audio_file.getvalue(), 
-                        audio_file.name
-                    )
-                
-                if used_real_api:
-                    st.sidebar.success("✅ Audio transcribed using OpenAI Whisper")
-                else:
-                    st.sidebar.warning("⚠️ Using mock transcription (OpenAI API not available)")
-                
-                st.sidebar.text_area("Transcription:", transcript, height=100)
     
     # Clear data button
     if not st.session_state.transactions_df.empty:
@@ -286,6 +267,10 @@ def render_main_content():
     # AI Insights Section
     st.header("🤖 AI-Powered Insights")
     
+    if not insights:
+        st.warning("⚠️ AI insights are not available. Please check your API key and try again.")
+        return
+    
     # Executive Summary
     col1, col2 = st.columns(2)
     
@@ -299,17 +284,43 @@ def render_main_content():
     
     # Recommendations
     recommendations = insights.get("recommendations", [])
+    recommendations_hi = insights.get("recommendations_hi", [])
     if recommendations:
         st.subheader("💡 Top Recommendations")
-        for i, rec in enumerate(recommendations[:5], 1):
-            st.markdown(f"**{i}.** {rec}")
+        
+        # Create tabs for English and Hindi recommendations
+        rec_tab1, rec_tab2 = st.tabs(["English", "हिंदी"])
+        
+        with rec_tab1:
+            for i, rec in enumerate(recommendations[:5], 1):
+                st.markdown(f"**{i}.** {rec}")
+        
+        with rec_tab2:
+            if recommendations_hi:
+                for i, rec in enumerate(recommendations_hi[:5], 1):
+                    st.markdown(f"**{i}.** {rec}")
+            else:
+                st.info("Hindi recommendations not available")
     
     # KPI Commentary
     kpi_commentary = insights.get("kpi_commentary", {})
+    kpi_commentary_hi = insights.get("kpi_commentary_hi", {})
     if kpi_commentary:
         st.subheader("📝 KPI Commentary")
-        for kpi, commentary in kpi_commentary.items():
-            st.markdown(f"**{kpi.replace('_', ' ').title()}:** {commentary}")
+        
+        # Create tabs for English and Hindi KPI commentary
+        kpi_tab1, kpi_tab2 = st.tabs(["English", "हिंदी"])
+        
+        with kpi_tab1:
+            for kpi, commentary in kpi_commentary.items():
+                st.markdown(f"**{kpi.replace('_', ' ').title()}:** {commentary}")
+        
+        with kpi_tab2:
+            if kpi_commentary_hi:
+                for kpi, commentary in kpi_commentary_hi.items():
+                    st.markdown(f"**{kpi.replace('_', ' ').title()}:** {commentary}")
+            else:
+                st.info("Hindi KPI commentary not available")
     
     # Data Table
     st.header("📋 Transaction Data")
@@ -367,7 +378,7 @@ def main():
     # Footer
     st.markdown("---")
     st.markdown(
-        '<p style="text-align: center; color: #9ca3af;">AI Business Saathi - Powered by OpenAI & Streamlit</p>',
+        '<p style="text-align: center; color: #9ca3af;">AI Business Saathi - Powered by Google Gemini & Streamlit</p>',
         unsafe_allow_html=True
     )
 
