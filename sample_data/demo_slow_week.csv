@@ -1,0 +1,45 @@
+date,product,category,quantity,unit_price,discount,payment_method
+2025-09-07,Cooking Oil 1L,Food,1,28.82,10,UPI
+2025-09-07,Onions 1kg,Vegetables,2,55.28,0,UPI
+2025-09-07,Potatoes 1kg,Vegetables,2,37.5,5,UPI
+2025-09-07,Potatoes 1kg,Vegetables,2,38.76,5,Cash
+2025-09-07,Bread Loaf,Food,2,121.02,0,Card
+2025-09-07,Maggi 2-Minute Noodles,Food,2,86.69,10,Cash
+2025-09-07,Milk 1L,Dairy,1,46.96,0,Card
+2025-09-07,Bread Loaf,Food,1,48.47,5,Card
+2025-09-07,Bread Loaf,Food,1,81.0,0,Card
+2025-09-07,Onions 1kg,Vegetables,3,42.11,0,Wallet
+2025-09-07,Parle-G Biscuits 100g,Snacks,1,16.49,10,Cash
+2025-09-07,Coca Cola 500ml,Beverages,1,20.8,0,Card
+2025-09-08,Eggs 12pcs,Dairy,2,46.79,0,Cash
+2025-09-08,Maggi 2-Minute Noodles,Food,1,73.47,5,UPI
+2025-09-08,Lays Classic 50g,Snacks,1,11.82,10,Cash
+2025-09-08,Tata Tea 250g,Beverages,2,15.54,0,Cash
+2025-09-08,Lays Classic 50g,Snacks,1,14.34,5,Card
+2025-09-08,Coca Cola 500ml,Beverages,2,42.41,0,Card
+2025-09-08,Eggs 12pcs,Dairy,1,33.25,0,UPI
+2025-09-08,Rice 1kg,Food,2,132.94,10,Card
+2025-09-09,Eggs 12pcs,Dairy,1,77.03,0,UPI
+2025-09-09,Potatoes 1kg,Vegetables,3,46.09,0,UPI
+2025-09-09,Milk 1L,Dairy,1,45.48,0,Card
+2025-09-09,Maggi 2-Minute Noodles,Food,1,118.37,0,Cash
+2025-09-09,Tomatoes 1kg,Vegetables,5,21.45,5,Wallet
+2025-09-09,Tata Tea 250g,Beverages,2,30.09,0,Wallet
+2025-09-09,Parle-G Biscuits 100g,Snacks,1,19.18,0,UPI
+2025-09-09,Cooking Oil 1L,Food,4,98.32,5,UPI
+2025-09-10,Onions 1kg,Vegetables,1,23.4,0,Cash
+2025-09-10,Lays Classic 50g,Snacks,1,19.85,5,Wallet
+2025-09-10,Onions 1kg,Vegetables,2,44.11,0,Cash
+2025-09-10,Lays Classic 50g,Snacks,1,27.95,0,Cash
+2025-09-10,Cooking Oil 1L,Food,4,144.48,0,Cash
+2025-09-10,Maggi 2-Minute Noodles,Food,1,144.91,5,UPI
+2025-09-10,Onions 1kg,Vegetables,1,48.22,5,Card
+2025-09-10,Rice 1kg,Food,2,78.31,0,Wallet
+2025-09-11,Cooking Oil 1L,Food,1,53.31,0,Card
+2025-09-11,Colgate Toothpaste 100g,Personal Care,3,91.54,5,Card
+2025-09-11,Maggi 2-Minute Noodles,Food,2,60.7,0,UPI
+2025-09-11,Tata Tea 250g,Beverages,2,17.14,0,Wallet
+2025-09-11,Milk 1L,Dairy,3,46.02,0,Card
+2025-09-11,Dettol Soap 100g,Personal Care,4,69.33,0,UPI
+2025-09-11,Eggs 12pcs,Dairy,1,69.42,10,Cash
+2025-09-11,Eggs 12pcs,Dairy,2,57.49,0,Cash

@@ -1,0 +1,61 @@
+date,product,category,quantity,unit_price,discount,payment_method
+2025-09-08,Eggs 12pcs,Dairy,2,44.16,0,UPI
+2025-09-08,Parle-G Biscuits 100g,Snacks,1,14.0,5,UPI
+2025-09-08,Dettol Soap 100g,Personal Care,1,45.93,0,Cash
+2025-09-08,Parle-G Biscuits 100g,Snacks,1,26.43,10,Cash
+2025-09-08,Cooking Oil 1L,Food,1,44.35,0,Wallet
+2025-09-08,Eggs 12pcs,Dairy,1,51.13,0,Wallet
+2025-09-08,Tata Tea 250g,Beverages,2,39.77,0,Wallet
+2025-09-08,Tomatoes 1kg,Vegetables,1,54.08,0,UPI
+2025-09-08,Bread Loaf,Food,1,26.63,0,Wallet
+2025-09-08,Tomatoes 1kg,Vegetables,1,53.14,0,Cash
+2025-09-08,Potatoes 1kg,Vegetables,3,21.22,0,Cash
+2025-09-08,Bread Loaf,Food,1,39.22,5,UPI
+2025-09-08,Dettol Soap 100g,Personal Care,1,76.53,0,Wallet
+2025-09-08,Milk 1L,Dairy,1,79.9,0,Card
+2025-09-08,Tomatoes 1kg,Vegetables,1,31.8,5,Cash
+2025-09-09,Rice 1kg,Food,1,52.39,0,Cash
+2025-09-09,Potatoes 1kg,Vegetables,3,40.59,0,Cash
+2025-09-09,Bread Loaf,Food,2,25.7,0,UPI
+2025-09-09,Parle-G Biscuits 100g,Snacks,1,19.35,10,Card
+2025-09-09,Tomatoes 1kg,Vegetables,4,32.45,0,Wallet
+2025-09-09,Lays Classic 50g,Snacks,2,14.9,0,Card
+2025-09-09,Parle-G Biscuits 100g,Snacks,1,10.55,0,UPI
+2025-09-09,Coca Cola 500ml,Beverages,2,45.33,0,UPI
+2025-09-09,Eggs 12pcs,Dairy,2,64.38,0,UPI
+2025-09-09,Maggi 2-Minute Noodles,Food,2,145.62,5,Wallet
+2025-09-09,Cooking Oil 1L,Food,2,66.66,5,Wallet
+2025-09-09,Onions 1kg,Vegetables,1,30.41,0,Wallet
+2025-09-09,Parle-G Biscuits 100g,Snacks,2,23.54,5,UPI
+2025-09-09,Dettol Soap 100g,Personal Care,2,82.78,0,Wallet
+2025-09-09,Rice 1kg,Food,1,66.92,0,Wallet
+2025-09-10,Potatoes 1kg,Vegetables,1,50.38,5,UPI
+2025-09-10,Milk 1L,Dairy,1,32.43,0,Cash
+2025-09-10,Dettol Soap 100g,Personal Care,3,73.89,0,Cash
+2025-09-10,Eggs 12pcs,Dairy,1,50.21,0,Wallet
+2025-09-10,Tata Tea 250g,Beverages,1,26.28,0,Card
+2025-09-10,Onions 1kg,Vegetables,2,17.51,0,UPI
+2025-09-10,Parle-G Biscuits 100g,Snacks,2,22.01,5,Wallet
+2025-09-10,Tata Tea 250g,Beverages,1,39.2,0,Cash
+2025-09-10,Potatoes 1kg,Vegetables,4,30.99,5,Card
+2025-09-10,Potatoes 1kg,Vegetables,3,32.63,0,Cash
+2025-09-10,Maggi 2-Minute Noodles,Food,1,129.75,0,Wallet
+2025-09-10,Tomatoes 1kg,Vegetables,5,16.99,0,Cash
+2025-09-10,Tata Tea 250g,Beverages,1,41.0,0,Card
+2025-09-10,Colgate Toothpaste 100g,Personal Care,5,65.31,5,Card
+2025-09-10,Milk 1L,Dairy,1,69.81,5,Wallet
+2025-09-11,Onions 1kg,Vegetables,1,22.81,0,Cash
+2025-09-11,Dettol Soap 100g,Personal Care,1,95.87,0,Card
+2025-09-11,Eggs 12pcs,Dairy,1,55.94,0,UPI
+2025-09-11,Dettol Soap 100g,Personal Care,2,37.21,10,Card
+2025-09-11,Potatoes 1kg,Vegetables,1,40.17,0,Cash
+2025-09-11,Coca Cola 500ml,Beverages,1,34.34,0,UPI
+2025-09-11,Dettol Soap 100g,Personal Care,1,89.33,0,Cash
+2025-09-11,Maggi 2-Minute Noodles,Food,2,96.36,0,Cash
+2025-09-11,Rice 1kg,Food,1,88.52,5,Card
+2025-09-11,Colgate Toothpaste 100g,Personal Care,1,53.65,0,Card
+2025-09-11,Rice 1kg,Food,2,131.0,0,UPI
+2025-09-11,Tata Tea 250g,Beverages,1,40.59,10,Cash
+2025-09-11,Rice 1kg,Food,1,48.91,0,UPI
+2025-09-11,Lays Classic 50g,Snacks,1,20.89,0,Card
+2025-09-11,Onions 1kg,Vegetables,1,29.85,10,Wallet
