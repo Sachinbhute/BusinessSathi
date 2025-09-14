@@ -6,7 +6,7 @@ A comprehensive retail analytics dashboard powered by AI that analyzes shop tran
 
 - **Multiple Data Input Methods**: CSV upload, manual entry, sample data, and voice input
 - **Real-time Analytics**: KPIs, charts, and visualizations
-- **AI-Powered Insights**: OpenAI GPT integration for business recommendations
+- **AI-Powered Insights**: Multi-provider AI support (OpenAI GPT & Google Gemini) for business recommendations
 - **Bilingual Support**: Executive summaries in English and Hindi
 - **PDF Export**: Professional reports with charts and insights
 - **Voice Transcription**: Audio input support via OpenAI Whisper
@@ -17,7 +17,7 @@ A comprehensive retail analytics dashboard powered by AI that analyzes shop tran
 ### Prerequisites
 
 - Python 3.11+
-- OpenAI API key (optional - app works with mock data if not provided)
+- AI API key (optional - supports OpenAI or Google Gemini, app works with mock data if not provided)
 
 ### Installation
 
@@ -35,7 +35,7 @@ A comprehensive retail analytics dashboard powered by AI that analyzes shop tran
 3. **Set up environment variables**
    ```bash
    cp env.example .env
-   # Edit .env and add your OpenAI API key
+   # Edit .env and add your AI API key (OpenAI or Gemini)
    ```
 
 4. **Generate sample data**
@@ -61,16 +61,30 @@ The app will open in your browser at `http://localhost:8501`
 Create a `.env` file with the following variables:
 
 ```env
-# Required for AI features
+# OpenAI Configuration (optional)
 OPENAI_API_KEY=your_openai_api_key_here
-
-# Optional: Model selection (default: gpt-4o-mini)
 OPENAI_MODEL=gpt-4o-mini
+
+# Google Gemini Configuration (optional)
+GEMINI_API_KEY=your_gemini_api_key_here
+GEMINI_MODEL=gemini-1.5-flash
+
+# AI Provider Selection (optional)
+# Set to "openai", "gemini", or "auto" (default: auto selects best available)
+AI_PROVIDER=auto
 ```
 
-### Without OpenAI API Key
+### AI Provider Selection
 
-The app works perfectly without an API key! It will:
+The app supports multiple AI providers with automatic selection:
+
+- **Auto Mode (Default)**: Automatically selects the best available provider
+- **OpenAI**: Uses GPT models for insights and Whisper for audio transcription
+- **Google Gemini**: Uses Gemini models for insights and basic audio processing
+
+### Without API Keys
+
+The app works perfectly without any API keys! It will:
 - Use mock AI responses for insights
 - Show voice input UI but use mock transcriptions
 - Demonstrate all features end-to-end
@@ -125,6 +139,8 @@ Buildathon/
 │   ├── ai/
 │   │   ├── __init__.py
 │   │   ├── openai_client.py      # OpenAI integration with fallbacks
+│   │   ├── gemini_client.py      # Google Gemini integration with fallbacks
+│   │   ├── client_factory.py     # Multi-provider AI client factory
 │   │   └── prompts.py            # AI prompt templates
 │   └── utils/
 │       ├── __init__.py
@@ -168,9 +184,11 @@ docker run -p 8501:8501 -e OPENAI_API_KEY=your_key_here ai-business-saathi
 - **Missing Data Handling**: Graceful fallbacks for incomplete data
 
 ### AI Integration
+- **Multi-Provider Support**: OpenAI GPT and Google Gemini
+- **Automatic Selection**: Smart provider selection based on availability
 - **JSON Output**: Deterministic parsing of AI responses
 - **Fallback Logic**: Mock responses when API unavailable
-- **Configurable Models**: Easy switching between GPT models
+- **Configurable Models**: Easy switching between different AI models
 - **Token Optimization**: Efficient prompts to minimize costs
 
 ### Visualization
@@ -204,13 +222,18 @@ python scripts/generate_sample_data.py
 
 ## 📝 API Usage
 
-### OpenAI API Costs
+### AI Provider Costs
 
+#### OpenAI
 - **GPT-4o-mini**: ~$0.15 per 1M input tokens, ~$0.60 per 1M output tokens
 - **GPT-4**: ~$5 per 1M input tokens, ~$15 per 1M output tokens
 - **Whisper**: $0.006 per minute of audio
 
-Typical usage: <$0.01 per analysis session with gpt-4o-mini
+#### Google Gemini
+- **Gemini 1.5 Flash**: ~$0.075 per 1M input tokens, ~$0.30 per 1M output tokens
+- **Gemini 1.5 Pro**: ~$1.25 per 1M input tokens, ~$5.00 per 1M output tokens
+
+Typical usage: <$0.01 per analysis session with either provider's basic models
 
 ## 🤝 Contributing
 

@@ -40,12 +40,14 @@ class OpenAIClient:
         - executive_summary_en: str
         - executive_summary_hi: str
         - recommendations: List[str]
+        - recommendations_hi: List[str]
         - kpi_commentary: Dict[str, str] (optional)
+        - kpi_commentary_hi: Dict[str, str] (optional)
         - risks: List[str] (optional)
         - opportunities: List[str] (optional)
         """
         if not self.is_available or not self._client:
-            return self._mock_insights()
+            raise RuntimeError("OpenAI API is not available. Please check your API key and internet connection.")
 
         try:
             response = self._client.chat.completions.create(
@@ -58,9 +60,14 @@ class OpenAIClient:
                 ],
             )
             content = response.choices[0].message.content or "{}"
-            return self._safe_json_loads(content, fallback=self._mock_insights())
-        except Exception:
-            return self._mock_insights()
+            result = self._safe_json_loads(content, fallback={})
+            
+            if not result:
+                raise RuntimeError("Failed to generate valid insights from OpenAI API.")
+            
+            return result
+        except Exception as e:
+            raise RuntimeError(f"OpenAI API error: {str(e)}")
 
     def transcribe_audio(self, file_bytes: bytes, filename: str = "audio.wav") -> Tuple[str, bool]:
         """Transcribe audio via Whisper if available, else mock.
@@ -101,33 +108,5 @@ class OpenAIClient:
         except Exception:
             return fallback or {}
 
-    @staticmethod
-    def _mock_insights() -> Dict[str, Any]:
-        return {
-            "executive_summary_en": (
-                "Sales are steady with strong contribution from top SKUs. Focus on upselling "
-                "high-margin items and running weekday promos to boost footfall."
-            ),
-            "executive_summary_hi": (
-                "बिक्री स्थिर है और शीर्ष उत्पाद अच्छा योगदान दे रहे हैं। उच्च मार्जिन आइटम्स की "
-                "अपसेलिंग और सप्ताह के दिनों में प्रमोशन चलाकर फुटफॉल बढ़ाएँ।"
-            ),
-            "recommendations": [
-                "Introduce a mid-week combo offer on top 3 products to lift basket size",
-                "Push low-moving inventory with 10% discount to free up cash flow",
-                "Set reorder alerts for fast-moving SKUs to avoid stockouts",
-            ],
-            "kpi_commentary": {
-                "total_revenue": "Healthy weekly trend with mild weekend spike",
-                "avg_order_value": "Scope to increase via bundles and cross-sell",
-            },
-        }
-
-    @staticmethod
-    def _mock_transcript() -> str:
-        return (
-            "Today footfall was moderate. Snacks and beverages performed well. Consider a 5% weekday "
-            "discount and bundle chips with soft drinks to increase average order value."
-        )
 
 
